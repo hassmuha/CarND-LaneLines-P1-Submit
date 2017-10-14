@@ -35,9 +35,9 @@ My pipeline consisted of 6 steps.
 6) Then by using the weighted combining method the detected laned were plotted over original image
 ![alt text][image4]
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by slope filtering.
-As we know the slope for the right side should be negative and for the left side slope should have positive value. The range have been defined separately for right and left lanes. At the end average slope and average y-intercept is calculated for left aand right lanes. A single line has been drawn for by taking the average slope and y-intercept within the region of interest for both left and right lane separately
-combining slopes together
+
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by slope filtering and averaging.
+As we know the slope for the right side should be negative and for the left side slope should have positive value. The slope filtering range have been defined separately for right and left lanes. All the lines lies in those ranges either correspond to left or right lane. At the end average slope and average y-intercept is calculated for left and right lanes. A single line has been drawn for by taking the average slope and y-intercept within the region of interest for both left and right lane separately.
 ![alt text][image5]
 ![alt text][image4]
 
@@ -45,13 +45,13 @@ combining slopes together
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be what would happen when ... 
+One potential shortcoming would be what would happen if in some images of a video, edge detection fails due to too much reflection of light or shadowing effect on the road. If the edges have not been detected that means no lanes or wrong lanes have been detected.
 
-Another shortcoming could be ...
+Another shortcoming could be selection of region of interest based on different cameras view. Currently based on the two sample videos the optimum region of interest has been identified but this would not work perfectly with change in camera view.
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
+A possible improvement would be to have a prediction mechanism to be deployed which captures lane detection information from previous images in a video stream to detect the optimum position of lanes in the corresponding image. This would also help to make decision during the time when any block fails to detect the lanes but based on previous history we can safely mark the lanes.
 
-Another potential improvement could be to ...
+Another potential improvement could be based on the camera calibration and field of view parameters for region of interest should be selected.
